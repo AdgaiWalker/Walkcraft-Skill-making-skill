@@ -48,7 +48,7 @@ A：从提需求开始，到执行、验收、调整直到完成的全过程。
 ---
 
 ## 更多信息
-
+- 生长理念：https://github.com/AdgaiWalker/Ferry
 - 工具推荐：[recommend.md](recommend.md)
 - 项目规划：[ROADMAP.md](ROADMAP.md)
 - 贡献指南：[CONTRIBUTING.md](CONTRIBUTING.md)
