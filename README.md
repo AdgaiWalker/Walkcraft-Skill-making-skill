@@ -1,60 +1,65 @@
-# 行种（Walkcraft）
+# 技能制作方法论
 
-**把对话变技能，对话完就能用。**
+从真实测试中迭代出健壮技能的方法论。不是写完就完，是"写-测-审-改-再测"的迭代循环。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
----
+## 对谁有用
 
-## 前言
+- 正在创建 Claude Code Skill 的人
+- 技能写了一版但测试不通过，不知道问题出在哪
+- 想知道为什么代码审查全通过但实际效果差
 
-每次用AI做完一件事，下次还得从头开始。手动复盘太麻烦，想让AI自动把过程变成模板。
+## 触发词
 
----
+"创建技能"、"改进技能"、"技能质量"、"技能架构"、"测试技能"、"技能总是出问题"、"怎么写好一个 skill"
 
-## 快速开始
+## 安装
 
-1. **下载文件**  
-   从本仓库下载 [`skill.md`](skill.md) 保存到本地。
+**方式 1：命令安装**
 
-2. **发给AI**  
-   在**包含完整历史对话的同一个AI对话框里**，把文件拖入（或粘贴文本）发送。
+```bash
+npx skills add AdgaiWalker/Walkcraft-Skill-making-skill --skill skill-making-skill
+```
 
-3. **保存结果**  
-   AI返回操作步骤，保存为 `skill(new).md`。
+**方式 2：让 AI 帮你安装**
 
-4. **下次直接用**  
-   做同类任务时，把 `skill(new).md` 发给AI，说“按这个执行”。
+把这段话发给 AI：
 
----
+```text
+帮我安装这个 skill：
+https://github.com/AdgaiWalker/Walkcraft-Skill-making-skill
+skill 名称：skill-making-skill
+请帮我用合适的方式完成安装。安装完成后，告诉我最短怎么调用它。
+```
 
-## 常见问题
+## 核心观点
 
-**Q1：必须用特定AI工具吗？**  
-A：不用。任何AI对话框都行（网页版、APP、IDE插件等）。
+第一版必然基于错误假设，只有真实测试才能暴露问题。windows-backup 技能从 7GB 残缺备份，经十轮迭代（4 次上下文溢出），最终产出 32.9GB 干净完整备份——代码审查全部通过，但模拟测试才发现只扫到了一小半数据。
 
-**Q2：行种存成什么格式？**  
-A：纯文本即可。推荐使用Markdown格式（如 `.md` 文件），方便阅读和版本管理。
+## 工作方式
 
-**Q3：AI会删文件吗？怎么防？**  
-A：有可能。重要文件建议用Git管理，并同步到GitHub远程仓库，防止丢失。
+```
+Phase 1: 问题建模（10 分钟）
+  → 想清楚再动手，回答四个问题
+Phase 2: 草稿
+  → 三阶段架构（发现 → 处理 → 执行）+ 去重 + 环境感知
+Phase 3: 真实测试
+  → 最重要的一步。代码审查查逻辑，真实测试查现实
+Phase 4: 审计分级
+  → P0/P1/P2，修根因不修症状
+Phase 5: 做减法
+  → 删掉 AI 想加但用户不需要的
+Phase 6: 通用化
+  → 技术术语换成日常语言
+Phase 7: 契约同步
+  → 配对技能一起改一起测
+```
 
-**Q4：结果不对怎么办？**  
-A：修改行种里的步骤，或让AI重做，直到满意。
+## 使用
 
-**Q5：什么样的对话算“完整任务”？**  
-A：从提需求开始，到执行、验收、调整直到完成的全过程。
+在 Claude Code 中说"我要创建一个新技能"或"这个技能质量有问题，帮我改进"即可触发。AI 会引导你走完整个流程。
 
----
+## License
 
-## 更多信息
-- 生长理念：https://github.com/AdgaiWalker/Ferry
-- 工具推荐：[recommend.md](recommend.md)
-- 项目规划：[ROADMAP.md](ROADMAP.md)
-- 贡献指南：[CONTRIBUTING.md](CONTRIBUTING.md)
-
----
-
-## 许可证
-
-MIT © Waker
+MIT
